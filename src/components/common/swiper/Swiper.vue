@@ -2,9 +2,9 @@
   <div id="hy-swiper">
     <div
       class="swiper"
-      @touchstart="touchstart(Element)"
-      @touchmove="touchmove(Element)"
-      @touchend="touchend(Element)"
+      @touchstart="touchStart"
+      @touchmove="touchMove"
+      @touchend="touchEnd"
     >
       <slot></slot>
     </div>
@@ -147,7 +147,7 @@ export default {
     /**
      * 拖动事件的处理
      */
-    touchStart: function(e) {
+    touchStart(e) {
       //1. 如果正在滚动，不可以拖动
       if (this.scroling) return;
 
@@ -158,7 +158,7 @@ export default {
       this.startx = e.touches[0].pagex;
     },
 
-    touchMove: function(e) {
+    touchMove(e) {
       //1.计算出用户拖动的距离
       this.currentx = e.touches[0].pagex;
       this.distance = this.currentx - this.startx;
@@ -169,7 +169,7 @@ export default {
       this.setTransform(moveDistance);
     },
 
-    touchEnd: function(e) {
+    touchEnd(e) {
       //1.获取移动的距离
       let currentMove = Math.abs(this.distance);
 
